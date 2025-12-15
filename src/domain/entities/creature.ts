@@ -4,7 +4,7 @@ export class Creature {
     constructor(
         protected readonly id: number,
         protected name: string,
-        protected biome: BiomeType[],
+        public biome: BiomeType[],
         public rare: number,
     ){
         if(rare < 0 || rare > 100){
