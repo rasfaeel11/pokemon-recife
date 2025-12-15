@@ -29,7 +29,7 @@ export class OverpassLocationGateway implements LocationGateway {
             // Debug visual
             const nomesEncontrados = elements.map((e: any) => e.tags.name).filter((n: any) => n);
             if (nomesEncontrados.length > 0) {
-                 console.log("📜 Nomes vistos:", nomesEncontrados.slice(0, 5)); 
+
             }
 
             if (elements.length === 0) return 'RESIDENTIAL';
@@ -44,24 +44,21 @@ export class OverpassLocationGateway implements LocationGateway {
                 });
             };
 
-            // --- REGRAS DE DETECÇÃO (A ORDEM IMPORTA MUITO!) ---
 
-            // 1. RECIFE ANTIGO (O mais específico de todos)
+    
             if (check('Marco Zero') || check('Bom Jesus') || check('Recife Antigo') || check('Paço do Frevo') || check('Arsenal')) {
-                console.log("✅ Detectado: RECIFE_ANTIGO");
+
                 return 'RECIFE_ANTIGO';
             }
 
-            // 2. AGAMENON / DERBY (Subiu para Prioridade 2!)
-            // Motivo: O Derby fica perto do Centro. Se checar Centro antes, ele rouba a vaga.
-            // Aqui garantimos: Se for Derby ou Agamenon, É TOXIC/AGAMENON.
+
             if (
                 check('Agamenon') || 
                 check('Derby') || 
                 check('Praça do Derby') || 
                 check('Paissandu')
             ) {
-                console.log("✅ Detectado: AGAMENON");
+
                 return 'AGAMENON';
             }
 
@@ -72,36 +69,36 @@ export class OverpassLocationGateway implements LocationGateway {
                 check('Conde da Boa Vista') || check('Rua Nova') || check('Imperatriz') ||
                 check('Duque de Caxias') || check('Futurista') || check('Diario de Pernambuco')
             ) {
-                console.log("✅ Detectado: CENTRO");
+
                 return 'CENTRO';
             }
 
             // 4. OLINDA
             if (check('Olinda') || check('Alto da Sé') || check('Quatro Cantos') || check('Mosteiro de São Bento')) {
-                console.log("✅ Detectado: OLINDA");
+
                 return 'OLINDA';
             }
 
             // 5. ESTÁDIOS
             if (check('Ilha do Retiro') || check('Adelmar') || check('Sport Club')) {
-                console.log("✅ Detectado: SPORT");
+
                 return 'SPORT';
             }
             if (
                 check('Aflitos') || check('Eládio de Barros') || check('Nautico') || check('Náutico') || 
                 check('Alberto Paiva') || check('Manuel de Carvalho') || check('Angustura') || check('Doze de Outubro')
             ) {
-                console.log("✅ Detectado: NAUTICO");
+
                 return 'NAUTICO';
             }
             if (check('Arruda') || check('Rego Maciel') || check('Mundão') || check('José do Rego')) {
-                console.log("✅ Detectado: ARRUDA");
+
                 return 'ARRUDA';
             }
 
             // 6. BAIRROS E LOCAIS
             if (check('Brennand') || check('Castelo São João') || check('Várzea')) {
-                console.log("✅ Detectado: BRENNAND");
+
                 return 'BRENNAND';
             }
 
@@ -113,7 +110,7 @@ export class OverpassLocationGateway implements LocationGateway {
                 check('Torre') || 
                 check('Real da Torre')
             ) {
-                console.log("✅ Detectado: BEIRA_RIO");
+
                 return 'BEIRA_RIO';
             }
 
@@ -121,7 +118,6 @@ export class OverpassLocationGateway implements LocationGateway {
             if (check('Casa Forte')) return 'CASA_FORTE';
             if (check('Graças') || check('Rui Barbosa') || check('Agnes Erskine')) return 'GRACAS';
 
-            // --- FALLBACKS ---
             if (foundTags.some((t: any) => t.leisure === 'park' || t.leisure === 'stadium')) return 'PARK';
             if (foundTags.some((t: any) => t.natural === 'beach' || t.natural === 'sand')) return 'BEACH';
             if (foundTags.some((t: any) => t.landuse === 'industrial')) return 'INDUSTRIAL';
