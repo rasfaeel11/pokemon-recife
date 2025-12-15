@@ -4,4 +4,17 @@ export type BiomeType =
     | 'BEACH' 
     | 'INDUSTRIAL' 
     | 'RESIDENTIAL' 
-    | 'WATER';
+    | 'WATER'
+    //micro-biomas
+    | 'CASA_FORTE'  
+    | 'BRENNAND'
+    | 'JAQUEIRA'  
+    | 'RECIFE_ANTIGO'
+    | 'CENTRO'  
+    | 'SPORT'
+    | 'NAUTICO'  
+    | 'BEIRA_RIO'
+    | 'GRACAS'  
+    | 'AGAMENON'
+    | 'OLINDA'  
+    | 'ARRUDA';
