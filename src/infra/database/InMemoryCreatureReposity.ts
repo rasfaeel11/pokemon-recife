@@ -1,5 +1,5 @@
 import { CreatureRepository } from "../../domain/repositories/CreatureRepository";
-import { Creature } from "../../domain/entities/Creature";
+import { Creature } from "../../domain/entities/creature";
 import { BiomeType } from "../../domain/entities/Biome";
 
 export class InMemoryCreaturRepository implements CreatureRepository{

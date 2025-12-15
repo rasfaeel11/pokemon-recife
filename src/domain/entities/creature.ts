@@ -2,8 +2,8 @@ import { BiomeType } from "./Biome";
 
 export class Creature {
     constructor(
-        protected readonly id: number,
-        protected name: string,
+        public readonly id: number,
+        public name: string,
         public biome: BiomeType[],
         public rare: number,
     ){
